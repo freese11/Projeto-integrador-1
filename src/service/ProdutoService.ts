@@ -32,8 +32,8 @@ export class ProdutosService {
 
   }
 
-  public async inserirProduto(codproduto: number, marca: string, valor: number, estoque: number, tipo: string, cor: string, nome: string, ativoINativo: string) {
-    return await this.repo.inserirProduto(codproduto, marca, valor, estoque, tipo, cor, nome, ativoINativo)
+  public async inserirProduto(codproduto: number, marca: string, valor: number, estoque: number, tipo: string, cor: string, nome: string, ativoINativo: string,tamanho:string) {
+    return await this.repo.inserirProduto(codproduto, marca, valor, estoque, tipo, cor, nome, ativoINativo,tamanho)
   }
 
 

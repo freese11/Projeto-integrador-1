@@ -44,7 +44,8 @@ export class ProdutosView {
                 let cor = this.prompt("digite a cor: ")
                 let nome = this.prompt("digite o nome:")
                 let ativoInativo = this.prompt("digite se ele esta ativo ou inativo:")
-                await this.produtos.inserirProduto(cod, marca, valor, estoque, tipo, cor, nome, ativoInativo)
+                let tamanho=this.prompt("digite o tamanho")
+                await this.produtos.inserirProduto(cod, marca, valor, estoque, tipo, cor, nome, ativoInativo,tamanho)
                 console.log("produtos adicionado com sucesso")
                 this.esxibirMenu()
                 break;
@@ -54,7 +55,7 @@ export class ProdutosView {
                 console.table(await this.produtos.BuscarPorCod(Buscarcod))
                 this.esxibirMenu()
             case "4":
-                let deleteproduto = this.prompt("digite o cod do produto que voce deseja deletar :")
+                let deleteproduto = this.prompt("digite' o cod do produto que voce deseja deletar :")
                 console.table(await this.produtos.deletarProduto(deleteproduto))
                 console.log("deletado com succeso")
                 console.log("")

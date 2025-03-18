@@ -19,7 +19,7 @@ export class ProdutoRepository {
         const listarProdutos: Produtos[] = [];
 
         for (const row of result.rows) {
-            const produtos = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo);
+            const produtos = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo,row.tamanho);
             listarProdutos.push(produtos);
 
         }
@@ -33,17 +33,17 @@ export class ProdutoRepository {
         const listarProdutos: Produtos[] = [];
 
         for (const row of result.rows) {
-            const produtos = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo)
+            const produtos = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo,row.tamanho)
             listarProdutos.push(produtos)
 
         }
         return listarProdutos
     }
 
-    public async inserirProduto(codproduto: number, marca: string, valor: number, estoque: number, tipo: string, cor: string, nome: string, ativoINativo: string) {
+    public async inserirProduto(codproduto: number, marca: string, valor: number, estoque: number, tipo: string, cor: string, nome: string, ativoINativo: string,tamanho:string) {
 
-        let query = "INSERT INTO public.produtos(codproduto, marca, valor, estoque, tipo, cor, nome, ativoinativo)VALUES ($1,$2,$3,$4,$5,$6,$7,$8);"
-        return await this.pool.query(query, [codproduto, marca, valor, estoque, tipo, cor, nome, ativoINativo]);
+        let query = "INSERT INTO public.produtos(codproduto, marca, valor, estoque, tipo, cor, nome, ativoinativo,tamanho)VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9);"
+        return await this.pool.query(query, [codproduto, marca, valor, estoque, tipo, cor, nome, ativoINativo,tamanho]);
     }
 
     public async deletarProduto(codproduto: number) {
@@ -56,7 +56,7 @@ export class ProdutoRepository {
   let query = "SELECT * FROM public.produtos where codproduto=$1"
         let result = await this.pool.query(query, [codproduto])
         let row = result.rows[0]
-        const produto = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo)
+        const produto = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo,row.tamanho)
         return produto
 
     }
@@ -68,7 +68,7 @@ export class ProdutoRepository {
         const listarProdutos: Produtos[] = [];
 
         for (const row of result.rows) {
-            const produtos = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo)
+            const produtos = new Produtos(row.codproduto, row.marca, row.valor, row.estoque, row.tipo, row.cor, row.nome, row.ativoINativo,row.tamanho)
             listarProdutos.push(produtos)
 
         }

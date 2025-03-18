@@ -20,16 +20,16 @@ export class UsuarioRepository {
         const listarUsuarios1: Usuario[] = [];
 
         for (const row of result.rows) {
-            const usuario = new Usuario(row.nome,row.cpf ,row.email,row.numero);
+            const usuario = new Usuario(row.nome,row.cpf ,row.email,row.numero,row.senha);
             listarUsuarios1.push(usuario)
 
         }
 return listarUsuarios1
 
     }
-public async inserirUsuario(nome:string,cpf:string,email:string,numero:string){
-    let query ="INSERT INTO public.usuarios(nome, cpf, email, numero)VALUES ($1,$2,$3,$4);"
-    return await this.pool.query(query,[nome,cpf,email,numero])
+public async inserirUsuario(nome:string,cpf:string,email:string,numero:string,senha:string){
+    let query ="INSERT INTO public.usuarios(nome, cpf, email, numero,senha)VALUES ($1,$2,$3,$4,$5);"
+    return await this.pool.query(query,[nome,cpf,email,numero,senha])
 }
 public async deletarUsuario(cpf:string) {
     const query = 'DELETE FROM public.usuarios WHERE cpf=$1'
@@ -37,10 +37,10 @@ public async deletarUsuario(cpf:string) {
     return result.rows;
 }
 public async retornarUsuario(cpf:string):Promise<Usuario>{
-  let query = "SELECT nome, cpf, email, numero FROM public.usuarios where cpf=$1"
+  let query = "SELECT nome, cpf, email, numero ,senha FROM public.usuarios where cpf=$1"
         let result = await this.pool.query(query, [cpf])
         let row = result.rows[0]
-        const usuario = new Usuario(row.nome,row.cpf ,row.email,row.numero)
+        const usuario = new Usuario(row.nome,row.cpf ,row.email,row.numero,row.senha)
        return usuario
 
     }

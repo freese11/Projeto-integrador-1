@@ -4,6 +4,7 @@ import { Vendas } from "../entity/vendas";
 import { Usuario } from "../entity/usuario";
 import { Produtos } from "../entity/produtos";
 import { Cliente } from "../entity/cliente";
+import { RelatorioVendasPorVendedor } from "../entity/relatorioVendaporVendedor";
 
 
 export class VendasRepositor {
@@ -35,4 +36,20 @@ export class VendasRepositor {
         return   await this.pool.query (query, [codVenda,produtos, dataVenda, quantidade, valorTotal, usuario,status1,cliente ]);}
    
     
+        async UsuarioVenda(): Promise<RelatorioVendasPorVendedor[]> {
+
+            const query = "SELECT u.nome, SUM(v.valortotal) AS total_vendas FROM vendas v join usuarios u on v.codusuario = u.cpf GROUP BY u.cpf ORDER BY total_vendas DESC LIMIT 1;";
+            const result = await this.pool.query(query);
+    
+            const uservenda: RelatorioVendasPorVendedor[] = [];
+    
+            for (const row of result.rows) {
+                const relatorio = new RelatorioVendasPorVendedor(row.nome,row.total_vendas);
+                uservenda.push(relatorio);
+    
+            }
+           return uservenda
+    
+        }
+
 }

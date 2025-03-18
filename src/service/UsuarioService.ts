@@ -16,9 +16,9 @@ export class UsuarioService {
     return await this.repo.listarUsuarios1()
   }
 
-  public async inserirUsuario(nome: string, cpf: string, email: string, numero: string) {
+  public async inserirUsuario(nome: string, cpf: string, email: string, numero: string,senha:string) {
     if (this.validarEmail(email))
-      return await this.repo.inserirUsuario(nome, cpf, email, numero)
+      return await this.repo.inserirUsuario(nome, cpf, email, numero,senha)
   }
   private validarEmail(email: string) {
     var re = /\S+@\S+\.\S+/;

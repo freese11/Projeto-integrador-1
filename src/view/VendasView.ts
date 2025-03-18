@@ -23,7 +23,7 @@ public async esxibirMenu(): Promise<void> {
     console.log("")
     console.log("1 - Mostrar vendas")
     console.log("2 - Cadastrar produto")
-    //console.log("3 - buscar  produto")
+    console.log("3 - Mostrar usuario com mais vendas")
     //console.log("4 - deletar produto")
     //console.log("5 - sair")
 
@@ -47,6 +47,10 @@ case "2":
                 await this.vendas.inserirVenda(codV,codP,dataa,quantidad,valor,codU,stats,codC)
                 console.log("vendas adicionado com sucesso")
                 this.esxibirMenu()
+case "3":
+    console.log("lista abaixo")
+    console.table(await this.vendas.UsuarioVenda())
+    this.esxibirMenu()
     }
 }
 

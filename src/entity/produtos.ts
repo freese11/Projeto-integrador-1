@@ -6,9 +6,10 @@ export class Produtos {
     private tipo :string
     private cor :string
     private nome :string
-    private ativoInativo:string
+    private ativoinativo:string
+    private tamanho:string
 
-    constructor(codproduto:number,marca:string,valor:number,estoque:number,tipo:string,cor:string,nome:string,ativoINativo:string){
+    constructor(codproduto:number,marca:string,valor:number,estoque:number,tipo:string,cor:string,nome:string,ativoINativo:string,tamanho:string){
 this.codproduto=codproduto
 this.marca=marca
 this.valor=valor
@@ -16,7 +17,8 @@ this.estoque=estoque
 this.tipo=tipo;
 this.cor=cor;
 this.nome=nome;
-this.ativoInativo=ativoINativo;
+this.ativoinativo=ativoINativo;
+this.tamanho=tamanho;
 
 }
 }

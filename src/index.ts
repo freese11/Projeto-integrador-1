@@ -1,5 +1,4 @@
 
-import { Vendas } from "./entity/vendas"
 import { ClienteService } from "./service/ClienteService"
 import { ProdutosService } from "./service/ProdutoService"
 import { UsuarioService } from "./service/UsuarioService"
@@ -23,20 +22,8 @@ async function cliente() {
  // console.table(await serviceClientes.BuscarPorId(1))
 }
 
-async function produtos() {
-  const serviceProdutos = new ProdutosService()
-  console.table(await serviceProdutos.listarProdutos())
-  //console.table(await serviceProdutos.BuscarPorCod(5))
-  serviceProdutos.inserirProduto(11, "adidas", 119, 10, "camisa", "preto/branco", "camisa adidas", "ativo")
-  console.table(await serviceProdutos.listarProdutos())
-}
 
-async function usuarios() {
-  const serviceUsuarios = new UsuarioService()
-  //console.table(await serviceUsuarios.listarUsuarios1())
-  serviceUsuarios.inserirUsuario("ADM", "100", "adm@gmail.com", "5199659")
-  console.table(await serviceUsuarios.listarUsuarios1())
-}
+
 async function clientesVIew(){
 const service3= new ClienteView()
 service3.esxibirMenu()}
@@ -65,7 +52,7 @@ async function vendasView() {
 //usuarioView()
 
 //endas()
-//vendasView()
+vendasView()
 //clientesVIew()
-ProdutoView()
+//ProdutoView()
 //usuarioView()
