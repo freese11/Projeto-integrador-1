@@ -25,7 +25,8 @@ export class ProdutosView {
         console.log("3 - buscar  produto")
         console.log("4 - deletar produto")
         console.log("5 - buscar por marca ")
-        console.log("6 - sair")
+        console.log("6 - atualizar valor")
+        console.log("7 - sair")
 
         let pergunta = this.prompt("Selecione alguma das opções acima  ")
         switch (pergunta) {
@@ -44,8 +45,8 @@ export class ProdutosView {
                 let cor = this.prompt("digite a cor: ")
                 let nome = this.prompt("digite o nome:")
                 let ativoInativo = this.prompt("digite se ele esta ativo ou inativo:")
-                let tamanho=this.prompt("digite o tamanho")
-                await this.produtos.inserirProduto(cod, marca, valor, estoque, tipo, cor, nome, ativoInativo,tamanho)
+                let tamanho = this.prompt("digite o tamanho")
+                await this.produtos.inserirProduto(cod, marca, valor, estoque, tipo, cor, nome, ativoInativo, tamanho)
                 console.log("produtos adicionado com sucesso")
                 this.esxibirMenu()
                 break;
@@ -63,11 +64,22 @@ export class ProdutosView {
                 console.table(await this.produtos.listarProdutos())
                 this.esxibirMenu()
             case "5":
-              let marcas = this.prompt("digite a marca que voce quer procurar :")
-              console.log("produtos e marcas  pesquisadas abaixo")
-              console.table(await this.produtos.BuscarPorMarca(marcas))
-              this.esxibirMenu()
-              case "6":
+                let marcas = this.prompt("digite a marca que voce quer procurar :")
+                console.log("produtos e marcas  pesquisadas abaixo")
+                console.table(await this.produtos.BuscarPorMarca(marcas))
+                this.esxibirMenu()
+            case "6":
+                let atualizarValor = this.prompt("Qual o codigo do produto que voce deseja mudar: ")
+                let novovalor = this.prompt("Digite o novo valor do produto: ")
+                await this.produtos.atualizarValor(atualizarValor ,novovalor )
+               
+                console.log("produto atualizado abaixo")
+                console.table(await this.produtos.BuscarPorCod(atualizarValor))
+         
+                this.esxibirMenu()
+
+
+            case "7":
                 console.log("voce saiu")
         }
     }

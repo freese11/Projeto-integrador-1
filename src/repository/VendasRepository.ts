@@ -4,9 +4,10 @@ import { Vendas } from "../entity/vendas";
 import { Usuario } from "../entity/usuario";
 import { Produtos } from "../entity/produtos";
 import { Cliente } from "../entity/cliente";
-import { RelatorioVendasPorVendedor } from "../entity/relatorioVendaporVendedor";
+import { RelatorioVendasPorVendedor } from "../entity/relatorioVendaPorVendedor";
 
 
+RelatorioVendasPorVendedor
 export class VendasRepositor {
     private pool: Pool;
 

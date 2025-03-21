@@ -1,11 +1,10 @@
 import { Cliente } from "../entity/cliente";
 import { Produtos } from "../entity/produtos";
-import { RelatorioVendasPorVendedor } from "../entity/relatorioVendaporVendedor";
-
+import { RelatorioVendasPorVendedor } from "../entity/relatorioVendaPorVendedor";
 import { Usuario } from "../entity/usuario";
 import { Vendas } from "../entity/vendas";
 import { VendasRepositor } from "../repository/VendasRepository";
-RelatorioVendasPorVendedor
+
 export class VendasService {
 
 

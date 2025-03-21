@@ -16,11 +16,17 @@ export class ProdutosService {
 
   }
   async listarProdutos(): Promise<Produtos[]> {
+    
+    try{
     return await this.repo.listarProdutos()
+  }catch(err){
+    throw new Error("Erro ao listar produtos: " + err.message);
+  }
   }
 
 
   public async BuscarPorCod(codproduto: number): Promise<Produtos[]> {
+    
     let lista: Produtos[] = []
 
     lista = await this.repo.BuscarPorCod(codproduto)
@@ -32,8 +38,16 @@ export class ProdutosService {
 
   }
 
-  public async inserirProduto(codproduto: number, marca: string, valor: number, estoque: number, tipo: string, cor: string, nome: string, ativoINativo: string,tamanho:string) {
-    return await this.repo.inserirProduto(codproduto, marca, valor, estoque, tipo, cor, nome, ativoINativo,tamanho)
+  public async inserirProduto(codproduto: number, marca: string, valor: number, estoque: number, tipo: string, cor: string, nome: string, ativoinativo: string,tamanho:string) {
+    return await this.repo.inserirProduto(codproduto, marca, valor, estoque, tipo, cor, nome, ativoinativo,tamanho)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   }
 
 
@@ -59,10 +73,16 @@ export class ProdutosService {
     lista = await this.repo.BuscarPorMarca(marca)
 
     if (lista.length == 0) {
-      throw new error("nao achei o cod do produto")
+    console.log("nao achei a marca")
     }
     return lista
 
   }
+
+  public async atualizarValor(valor:number,codproduto:number){
+    let lista : Produtos [] = []
+    lista = await this.repo.atualizarValor(valor,codproduto)
+    return lista
+}
 
 }

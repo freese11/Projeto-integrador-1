@@ -42,6 +42,10 @@ public async retornarUsuario(cpf:string):Promise<Usuario>{
         let row = result.rows[0]
         const usuario = new Usuario(row.nome,row.cpf ,row.email,row.numero,row.senha)
        return usuario
-
+    }
+    public async atualizarUsuario(email : string,senha : string){
+        const query = 'UPDATE public.usuarios  SET senha = $2 WHERE email = $1;'
+        const result = await this.pool.query(query,[email , senha])
+        return result.rows
     }
 }

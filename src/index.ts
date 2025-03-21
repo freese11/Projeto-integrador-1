@@ -52,7 +52,7 @@ async function vendasView() {
 //usuarioView()
 
 //endas()
-vendasView()
+//vendasView()
 //clientesVIew()
-//ProdutoView()
+ProdutoView()
 //usuarioView()
