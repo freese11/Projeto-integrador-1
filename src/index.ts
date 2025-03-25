@@ -34,7 +34,7 @@ async function ProdutoView() {
   service1.esxibirMenu()}
 
 
-async function usuarioView(){
+async function usuarioView(){3
   const service2 = new UsuarioView()
   service2.esxibirMenu()
 }

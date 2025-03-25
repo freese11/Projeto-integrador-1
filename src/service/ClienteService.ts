@@ -17,42 +17,79 @@ export class ClienteService {
     return await this.repo.listarClientes()
   }
 
+  public async inserirCliente(id: number, nome: string, email: string, telefone: string) {
 
-  public async inserirCliente(cpf: number, nome: string, email: string, telefone: string) {
-    if (this.validarEmail(email))
-      return await this.repo.inserirCliente(cpf, nome, email, telefone)
+    if (isNaN(id)) {
+      console.log("O ID do cliente deve ser um número.");
+    }
+
+
+    if (!/^[a-zA-Z\s]+$/.test(nome)) {
+      console.log("O nome deve conter apenas letras e espaços.");
+    }
+
+    if (!this.validarEmail(email)) {
+      console.log("O email fornecido é inválido.");
+    }
+
+    if (!/^\d{10,11}$/.test(telefone)) {
+      console.log("O telefone deve ter entre 10 e 11 dígitos.");
+    }
+
+    return await this.repo.inserirCliente(id, nome, email, telefone);
   }
-  private validarEmail(email: string) {
+
+  private validarEmail(email: string): boolean {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
-
   }
 
-  public async BuscarPorId(cpf: number): Promise<Cliente[]> {
-    let lista: Cliente[] = []
+  public async BuscarPorId(id: number): Promise<Cliente[]> {
 
-    lista = await this.repo.BuscarPorId(cpf)
-
-    if (lista.length == 0) {
-      throw new error("nao achei o id do cliente")
+    if (!id || isNaN(id)) {
+      console.log("O ID deve ser um número válido.");
+      return [];
     }
-    return lista
+    let lista: Cliente[] = await this.repo.BuscarPorId(id);
 
-  }
-  public async deletarCliente(cpf: number): Promise<Cliente[]> {
-    let lista: Cliente[] = [];
-    lista = await this.repo.deletarCliente(cpf)
-    return lista
-  }
-
-
-  public async retornarCliente(cpf:number) :Promise<Cliente> {
-    let cliente :Cliente
-    
-    cliente= await this.repo.retornarCliente(cpf)
-    
-  
-  return cliente
-    
+    if (lista.length === 0) {
+      console.log("Não encontramos um cliente com esse ID.");
+    } else {
+      console.log("Cliente(s) encontrado(s):");
+      console.table(lista);
     }
+    return lista;
+  }
+  public async deletarCliente(id: number): Promise<Cliente[]> {
+    if (!id || isNaN(id)) {
+      console.log("O ID fornecido não é válido.");
+      return [];
+    }
+
+    let lista: Cliente[] = await this.repo.BuscarPorId(id);
+
+    if (lista.length === 0) {
+      console.log("Não encontramos o cliente com o ID fornecido para deletar.");
+      return [];
+    }
+
+    await this.repo.deletarCliente(id);
+    console.log("Cliente deletado com sucesso.");
+
+
+    console.log("Lista atualizada abaixo:");
+    console.table(await this.listarClientes());
+
+    return lista;
+  }
+
+  public async retornarCliente(id: number): Promise<Cliente> {
+    let cliente: Cliente
+
+    cliente = await this.repo.retornarCliente(id)
+
+
+    return cliente
+
+  }
 }

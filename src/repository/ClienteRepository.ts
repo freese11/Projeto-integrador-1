@@ -18,46 +18,46 @@ export class ClienteRepository {
         const listaClientes: Cliente[] = [];
 
         for (const row of result.rows) {
-            const cliente = new Cliente(row.cpf, row.nome, row.email, row.telefone);
+            const cliente = new Cliente(row.id, row.nome, row.email, row.telefone);
             listaClientes.push(cliente);
 
         }
         return listaClientes;
     }
 
-    public async inserirCliente(cpf: number, nome: string, email: string, telefone: string) {
+    public async inserirCliente(id: number, nome: string, email: string, telefone: string) {
 
         let query = 'INSERT INTO public.clientes(id, nome, email, telefone)VALUES ($1, $2, $3,$4);'
-        return await this.pool.query(query, [cpf, nome, email, telefone])
+        return await this.pool.query(query, [id, nome, email, telefone])
     }
 
 
 
-    public async BuscarPorId(cpf: number): Promise<Cliente[]> {
-        let query = "SELECT cpf, nome, email, telefone FROM public.clientes where id=$1"
-        let result = await this.pool.query(query, [cpf])
+    public async BuscarPorId(id: number): Promise<Cliente[]> {
+        let query = "SELECT id, nome, email, telefone FROM public.clientes where id=$1"
+        let result = await this.pool.query(query, [id])
 
         const listarClientes: Cliente[] = [];
 
         for (const row of result.rows) {
-            const cliente = new Cliente(row.cpf, row.nome, row.email, row.telefone)
+            const cliente = new Cliente(row.id, row.nome, row.email, row.telefone)
             listarClientes.push(cliente)
 
         }
         return listarClientes
     }
 
-    public async deletarCliente(cpf: number) {
-        const query = ' DELETE FROM public.clientes WHERE cpf =$1;'
-        const result = await this.pool.query(query, [cpf])
+    public async deletarCliente(id: number) {
+        const query = ' DELETE FROM public.clientes WHERE id =$1;'
+        const result = await this.pool.query(query, [id])
         return result.rows;
     }
 
-    public async retornarCliente(cpf: number): Promise<Cliente> {
+    public async retornarCliente(id: number): Promise<Cliente> {
         let query = "SELECT * FROM public.produtos where id=$1"
-        let result = await this.pool.query(query, [cpf])
+        let result = await this.pool.query(query, [id])
         let row = result.rows[0]
-        const cliente = new Cliente(row.cpf, row.nome, row.email, row.telefone)
+        const cliente = new Cliente(row.id, row.nome, row.email, row.telefone)
         return cliente
 
     }

@@ -34,14 +34,11 @@ public async retornarUsuario(cpf:string) :Promise<Usuario> {
   let usuario :Usuario
   
   usuario= await this.repo.retornarUsuario(cpf)
+  
+
 return usuario
+  
   }
 
-
-  public async atualizarUsuario(email : string,senha : string){
-    let lista : Usuario [] = []
-    lista = await this.repo.atualizarUsuario(email , senha)
-    return lista
-}
 
 }

@@ -23,7 +23,7 @@ public async esxibirMenu(): Promise<void> {
     console.log("")
     console.log("1 - Mostrar vendas")
     console.log("2 - Cadastrar produto")
-    console.log("3 - Mostrar vendedor com mais vendas")
+    console.log("3 - Mostrar usuario com mais vendas")
     //console.log("4 - deletar produto")
     //console.log("5 - sair")
 

@@ -18,13 +18,14 @@ export class ClienteView {
 
 
     public async esxibirMenu(): Promise<void> {
-       
-        
-        console.log("1 - Mostrar clietes")
-        console.log("2 - Cadastrar cliente")
-        console.log("3 - buscar por id")
-        console.log("4 - deletar")
-        console.log("5 - sair")
+
+        console.log("FreeseSalesSystem")
+        console.log("")
+        console.log("1 - Mostrar clientes")
+        console.log("2 - Cadastrar clientes")
+        console.log("3 - buscar id  do cliente")
+        console.log("4 - deletar cliente")
+        console.log("4 - ")
 
 
         let pergunta = this.prompt("Selecione alguma das opções acima  ")
@@ -36,7 +37,7 @@ export class ClienteView {
                 break;
             case "2":
                 let nome = this.prompt("qual o nome do cliente")
-                let id = this.prompt("digite o id do cpf")
+                let id = this.prompt("digite o cpf do cliente")
                 let numero = this.prompt("digite o numero ")
                 let email = this.prompt("digite o email do cliente")
                 await this.cliente.inserirCliente(id, nome, email, numero)
@@ -46,14 +47,21 @@ export class ClienteView {
                 break;
             case "3":
                 let buscariid = this.prompt("digite o id do cliente que voce quer procurar")
-                console.table(await this.cliente.BuscarPorId(buscariid))
-                case"4":
-                   let deleteCliente=this.prompt("digite o id do cliente que voce deseja deletar")
-                   console.table(await this.cliente.deletarCliente(deleteCliente))
-                   console.log("deletado com succeso")
-                   this.esxibirMenu()
-                   case"5":
-                   console.log("voce saiu ")
+                await this.cliente.BuscarPorId(buscariid)
+                break;
+            case "4":
+                let deleteCliente = this.prompt("digite o id do cliente que voce deseja deletar")
+                await this.cliente.deletarCliente(deleteCliente)
+
+                this.esxibirMenu()
+                break;
+            case "5":
+                console.log("voce saiu ")
+                default :
+                console.log("digite de 1 a 5")
+                this.esxibirMenu()
+                
+
         }
     }
 }

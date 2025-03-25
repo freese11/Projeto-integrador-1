@@ -25,8 +25,7 @@ export class ProdutosView {
         console.log("3 - buscar  produto")
         console.log("4 - deletar produto")
         console.log("5 - buscar por marca ")
-        console.log("6 - atualizar valor")
-        console.log("7 - sair")
+        console.log("6 - sair")
 
         let pergunta = this.prompt("Selecione alguma das opções acima  ")
         switch (pergunta) {
@@ -45,42 +44,34 @@ export class ProdutosView {
                 let cor = this.prompt("digite a cor: ")
                 let nome = this.prompt("digite o nome:")
                 let ativoInativo = this.prompt("digite se ele esta ativo ou inativo:")
-                let tamanho = this.prompt("digite o tamanho")
-                await this.produtos.inserirProduto(cod, marca, valor, estoque, tipo, cor, nome, ativoInativo, tamanho)
+                let tamanho=this.prompt("digite o tamanho")
+                await this.produtos.inserirProduto(cod, marca, valor, estoque, tipo, cor, nome, ativoInativo,tamanho)
                 console.log("produtos adicionado com sucesso")
                 this.esxibirMenu()
                 break;
             case "3":
                 let Buscarcod = this.prompt("digite o codigo que voce quer pesquisar  :")
                 console.log("produto pesquisado abaixo")
-                console.table(await this.produtos.BuscarPorCod(Buscarcod))
+                await this.produtos.BuscarPorCod(Buscarcod)
                 this.esxibirMenu()
+                break;
             case "4":
                 let deleteproduto = this.prompt("digite' o cod do produto que voce deseja deletar :")
-                console.table(await this.produtos.deletarProduto(deleteproduto))
-                console.log("deletado com succeso")
-                console.log("")
-                console.log("lista atualizada  abaixo")
-                console.table(await this.produtos.listarProdutos())
+                await this.produtos.deletarProduto(deleteproduto)
+          
                 this.esxibirMenu()
+                break;
             case "5":
-                let marcas = this.prompt("digite a marca que voce quer procurar :")
-                console.log("produtos e marcas  pesquisadas abaixo")
-                console.table(await this.produtos.BuscarPorMarca(marcas))
-                this.esxibirMenu()
-            case "6":
-                let atualizarValor = this.prompt("Qual o codigo do produto que voce deseja mudar: ")
-                let novovalor = this.prompt("Digite o novo valor do produto: ")
-                await this.produtos.atualizarValor(atualizarValor ,novovalor )
-               
-                console.log("produto atualizado abaixo")
-                console.table(await this.produtos.BuscarPorCod(atualizarValor))
-         
-                this.esxibirMenu()
-
-
-            case "7":
+              let marcas = this.prompt("digite a marca que voce quer procurar :")
+              await this.produtos.BuscarPorMarca(marcas)
+              this.esxibirMenu()
+              break;
+              case "6":
                 console.log("voce saiu")
+                break;
+                default :
+                console.log("digite de 1 a 6")
+                this.esxibirMenu()
         }
     }
 }

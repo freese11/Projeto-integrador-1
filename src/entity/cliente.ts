@@ -1,12 +1,12 @@
 export class Cliente{
     private nome:string
-    private cpf:number
+    private id:number
     private email:string
     private telefone:string
 
-constructor(cpf:number,nome:string,email:string,telefone:string){
+constructor(id:number,nome:string,email:string,telefone:string){
 this.nome=nome
-this.cpf=cpf
+this.id=id
 this.email=email
 this.telefone=telefone
 }
